@@ -8,10 +8,10 @@ public class Pessoa {
 
 	private String nome;
 	private String email;
-	private LocalDate datanascimento;
+	private Date datanascimento;
 
 	
-	public Pessoa(String nome, String email, LocalDate datanascimento) {
+	public Pessoa(String nome, String email, Date datanascimento) {
 		
 		this.nome = nome;
 		this.email = email;
@@ -19,12 +19,12 @@ public class Pessoa {
 	}
 
 
-	public LocalDate getDatanascimento() {
+	public Date getDatanascimento() {
 		return datanascimento;
 	}
 
 
-	public void setDatanascimento(LocalDate datanascimento) {
+	public void setDatanascimento(Date datanascimento) {
 		this.datanascimento = datanascimento;
 	}
 
@@ -49,18 +49,12 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public int getAge() {
-		LocalDate now = LocalDate.now();
-		
-		int age = now.getYear() - datanascimento.getYear();
-		
-		if (now.getMonthValue() < datanascimento.getMonthValue() || now.getMonthValue() == datanascimento.getMonthValue() && now.getDayOfYear() < datanascimento.getDayOfYear()) {
-			age--;
-		}
-		
-		return age;
+	public int calcularIdade() {
+		Date data = new Date();
+		return data.getYear()-datanascimento.getYear();
 	}
-	
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -70,8 +64,8 @@ public class Pessoa {
 		builder.append(email);
 		builder.append(", datanascimento=");
 		builder.append(datanascimento);
-		builder.append(", Idade=");
-		builder.append(getAge());
+		builder.append(", calcularIdade()=");
+		builder.append(calcularIdade());
 		builder.append(", toString()=");
 		builder.append(super.toString());
 		builder.append("]");
@@ -79,4 +73,7 @@ public class Pessoa {
 	}
 	
 	
-}
+	}
+	
+	
+
